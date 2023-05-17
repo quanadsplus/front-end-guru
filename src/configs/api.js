@@ -1,0 +1,1 @@
+export const AUTHENTICATION_LOGIN = `${process.env.VUE_APP_API_URL}/auth/login`;

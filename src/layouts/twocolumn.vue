@@ -10,7 +10,7 @@ import Menu from "@/components/menu.vue";
 import NavBar from "@/components/nav-bar";
 import RightBar from "@/components/right-bar";
 import Footer from "@/components/footer";
-
+import sidebar from "../configs/sidebar";
 /**
  * Vertical layout
  */
@@ -24,6 +24,7 @@ export default {
   },
   data() {
     return {
+      sidebar,
       isMenuCondensed: false,
       rmenu: localStorage.getItem('rmenu') ? localStorage.getItem('rmenu') : 'twocolumn',
     };
@@ -238,6 +239,12 @@ export default {
             <div id="two-column-menu">
               <SimpleBar class="twocolumn-iconview list-unstyled">
                 <b-link href="#" class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></b-link>
+                <li v-for="(item,index) in sidebar.sideBarIcon" :key="index">
+                  <b-link class="nav-icon" :href="item.href" role="button"
+                    @click.prevent="updateMenu(item.menuValue)">
+                    <i :class="item.icon"></i>
+                  </b-link>
+                </li>
                 <li>
                   <b-link class="nav-icon" href="#sidebarDashboards" role="button"
                     @click.prevent="updateMenu('sidebarDashboards')">
@@ -368,7 +375,46 @@ export default {
                   </div>
                 </li>
                 <!-- end Dashboard Menu -->
-                <li class="nav-item">
+                <li class="nav-item" v-for="(item,index) in sidebar.sideBarList" :key="index">
+                  <div class="collapse menu-dropdown" :id="item.id">
+                    <ul class="nav nav-sm flex-column">
+                      <li class="nav-item" v-for="(router1,index) in item.list" :key="index">
+                        <b-link v-if="router1.id !== ''" :href="router1.id" class="nav-link" data-bs-toggle="collapse" role="button"
+                          aria-expanded="false" :aria-controls="router1.value" :data-key="router1.datakey">
+                          {{ $t(router1.t) }}
+                        </b-link>
+                        <router-link v-else :to="router1.link" class="nav-link" :data-key="router1.datakey">
+                          {{ $t(router1.t) }}
+                        </router-link>
+                        <div v-if="router1.list.length > 0" class="collapse menu-dropdown" id="sidebaremail">
+                          <ul class="nav nav-sm flex-column">
+                            <li v-for="(router2,index) in router1.list" :key="index" class="nav-item">
+                              <b-link v-if="router2.id !== ''" :href="router2.id" class="nav-link" data-bs-toggle="collapse" role="button"
+                                aria-expanded="false" :aria-controls="router2.value" data-key="t-projects">
+                                {{ $t("t-email-templates") }}
+                              </b-link>
+                              <router-link v-else :to="router2.link" class="nav-link" :data-key="router2.datakey">
+                                {{ $t(router2.t) }}
+                              </router-link>
+                              <div v-if="router2.list.length > 0" class="collapse menu-dropdown" :id="router2.value">
+                                <ul class="nav nav-sm flex-column">
+                                  <li class="nav-item" v-for="(router3,index) in router2.list" :key="index">
+                                    <router-link :to="router3.link" class="nav-link" :data-key="router3.datakey">
+                                      {{ $t(router3.t) }}
+                                    </router-link>
+                                  </li>
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+
+                <!-- <li class="nav-item">
                   <div class="collapse menu-dropdown" id="sidebarApps">
                     <ul class="nav nav-sm flex-column">
                       <li class="nav-item">
@@ -1532,7 +1578,7 @@ export default {
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
               </SimpleBar>
             </template>
           </b-container>

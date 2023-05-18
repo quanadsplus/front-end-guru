@@ -22,13 +22,11 @@ export const layoutComputed = {
   })
 }
 
-export const authMethods = mapActions('auth', ['logIn', 'logOut', 'register', 'resetPassword','loginEmailPassword'])
+export const authMethods = mapActions('auth', [ 'logOut' ,'loginEmailPassword'])
 
 export const layoutMethods = mapActions('layout', 
 ['changeLayoutType', 'changeLayoutWidth', 'changeSidebarSize', 'changeTopbar', 'changeMode', 'changePosition', 'changeSidebarView',
- 'changeSidebarColor','changeSidebarImage','changePreloader', 'changeVisibility'])
-
-export const authFackMethods = mapActions('authfack', ['login', 'registeruser', 'logout'])
+ 'changeSidebarColor', 'changeVisibility'])
 
 export const notificationMethods = mapActions('notification', ['success', 'error', 'clear'])
 

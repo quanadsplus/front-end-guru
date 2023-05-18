@@ -12,19 +12,17 @@ import {
     useVuelidate
 } from '@vuelidate/core'
 import appConfig from "../../../app.config";
-// import axios from 'axios';
 
 import {
     authMethods,
-    authFackMethods,
     notificationMethods,
 } from "@/state/helpers";
 
 export default {
     setup() {
         const initialState = {
-            email: '',
-            password: '',
+            email: 'admin@themesbrand.com',
+            password: '123456',
             success: false
         }
         const rules = {
@@ -54,12 +52,7 @@ export default {
     },
     data() {
         return {
-            // email: "admin@themesbrand.com",
-            // password: "123456",
-            submitted: false,
-            authError: null,
-            tryingToLogIn: false,
-            isAuthError: false,
+            
         };
     },
 
@@ -68,7 +61,6 @@ export default {
     },
     methods: {
         ...authMethods,
-        ...authFackMethods,
         ...notificationMethods,
         async signinapi() {
             this.v$.$validate()
@@ -83,66 +75,6 @@ export default {
             }
 
         },
-
-        // Try to log the user in with the username
-        // and password they provided.
-        // tryToLogIn() {
-        //     this.submitted = true;
-        //     // stop here if form is invalid
-        //     this.$touch;
-
-        //     if (this.$invalid) {
-        //         return;
-        //     } else {
-        //         if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-        //             this.tryingToLogIn = true;
-        //             // Reset the authError if it existed.
-        //             this.authError = null;
-        //             return (
-        //                 this.logIn({
-        //                     email: this.email,
-        //                     password: this.password,
-        //                 })
-        //                 // eslint-disable-next-line no-unused-vars
-        //                 .then((token) => {
-        //                     this.tryingToLogIn = false;
-        //                     this.isAuthError = false;
-        //                     // Redirect to the originally requested page, or to the home page
-        //                     this.$router.push({
-        //                         path: '/'
-        //                     });
-        //                 })
-        //                 .catch((error) => {
-        //                     this.tryingToLogIn = false;
-        //                     this.authError = error ? error : "";
-        //                     this.isAuthError = true;
-        //                 })
-        //             );
-        //         } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
-        //             const {
-        //                 email,
-        //                 password
-        //             } = this;
-        //             console.log(email)
-        //             if (email && password) {
-        //                 this.login({
-        //                     email,
-        //                     password,
-        //                 });
-        //             }
-        //         } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
-        //             axios
-        //                 .post("http://127.0.0.1:8000/api/login", {
-        //                     email: this.email,
-        //                     password: this.password,
-        //                 })
-        //                 .then((res) => {
-        //                     return res;
-        //                 });
-        //         }
-        //     }
-        // },
-
     },
 };
 </script>
@@ -316,7 +248,6 @@ export default {
                                 <p class="text-muted">Tiếp tục đăng nhập để thay đổi số liệu QC</p>
                             </div>
                             <div class="p-2 mt-4">
-                                <!-- <b-alert v-model="authError" variant="danger" class="mt-3" dismissible>{{ authError }}</b-alert> -->
 
                                 <div>
 
@@ -385,7 +316,7 @@ export default {
 
                                     <div class="mt-4 text-center">
                                         <div class="signin-other-title">
-                                            <h5 class="fs-13 mb-4 title">Sign In with</h5>
+                                            <h5 class="fs-13 mb-4 title">Đăng nhập với</h5>
                                         </div>
                                         <div>
                                             <b-button variant="primary" type="button" class="btn btn-primary btn-icon">

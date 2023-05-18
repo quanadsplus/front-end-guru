@@ -8,7 +8,6 @@ export const state = {
   sidebarView: 'default',
   sidebarColor: 'dark',
   sidebarImage: 'none',
-  preloader: 'enable',
   visibility: 'show'
 };
 
@@ -40,10 +39,7 @@ export const mutations = {
   CHANGE_SIDEBAR_IMAGE(state, sidebarImage) {
     state.sidebarImage = sidebarImage;
   },
-  CHANGE_PRELOADER(state, preloader) {
-    state.preloader = preloader;
-  },
-  CHANGE_VISIBILITY(state, visibility) {
+ BILITY(state, visibility) {
     state.visibility = visibility;
   },
 };
@@ -81,15 +77,6 @@ export const actions = {
   changeSidebarColor({ commit }, { sidebarColor }) {
     commit('CHANGE_SIDEBAR_COLOR', sidebarColor);
   },
-
-  changeSidebarImage({ commit }, { sidebarImage }) {
-    commit('CHANGE_SIDEBAR_IMAGE', sidebarImage);
-  },
-
-  changePreloader({ commit }, { preloader }) {
-    commit('CHANGE_PRELOADER', preloader);
-  },
-
   changeVisibility({ commit }, { visibility }) {
     commit('CHANGE_VISIBILITY', visibility);
   }

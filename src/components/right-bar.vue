@@ -1,14 +1,14 @@
 <script>
 localStorage.setItem("rightbar_isopen", true);
 import { layoutMethods, layoutComputed } from "@/state/helpers";
-import { SimpleBar } from "simplebar-vue3";
+// import { SimpleBar } from "simplebar-vue3";
 /**
  * Right sidebar component
  */
 export default {
-  components: {
-    SimpleBar,
-  },
+  // components: {
+  //   SimpleBar,
+  // },
   data() {
     return {
       config: {
@@ -95,11 +95,11 @@ export default {
       };
     }
 
-    let rightbar_isopen = localStorage.getItem('rightbar_isopen');
-    if (rightbar_isopen == 'true') {
-      document.getElementById('mdi-cog').click();
-      localStorage.setItem("rightbar_isopen", false);
-    }
+    // let rightbar_isopen = localStorage.getItem('rightbar_isopen');
+    // if (rightbar_isopen == 'true') {
+    //   document.getElementById('mdi-cog').click();
+    //   localStorage.setItem("rightbar_isopen", false);
+    // }
     var setpreloader = document.getElementById("preloader");
     if (localStorage.getItem('data-preloader') && localStorage.getItem('data-preloader') == 'enable') {
       document.documentElement.setAttribute("data-preloader", "enable");
@@ -527,17 +527,17 @@ export default {
       </div>
     </div>
 
-    <b-button variant="danger" @click="topFunction" class="btn-icon" id="back-to-top">
+    <b-button variant="danger" @click="topFunction" style="bottom: 40px;" class="btn-icon" id="back-to-top">
       <i class="ri-arrow-up-line"></i>
     </b-button>
 
-    <div class="customizer-setting d-none d-md-block">
+    <!-- <div class="customizer-setting d-none d-md-block">
       <div class="btn-info btn-rounded shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas"
         data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas" id="mdi-cog">
         <i class="mdi mdi-spin mdi-cog-outline fs-22"></i>
       </div>
-    </div>
-    <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+    </div> -->
+    <!-- <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
       <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
         <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
         <b-button type="button" variant="white" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas"
@@ -1374,6 +1374,6 @@ export default {
           </b-col>
         </b-row>
       </div>
-    </div>
+    </div> -->
 </div></template>
   

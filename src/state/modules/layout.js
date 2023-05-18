@@ -1,5 +1,5 @@
 export const state = {
-  layoutType: 'vertical',
+  layoutType: 'twocolumn',
   layoutWidth: 'fluid',
   sidebarSize: 'sm-hover',
   topbar: 'light',

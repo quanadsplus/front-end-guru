@@ -14,8 +14,8 @@ export default {
   },
   validations: {
     email: {
-      required: helpers.withMessage("Email is required", required),
-      email: helpers.withMessage("Please enter valid email", email),
+      required: helpers.withMessage("Bạn phải nhập emal", required),
+      email: helpers.withMessage("Email không hợp lệ", email),
     },
   },
   page: {
@@ -74,7 +74,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <div class="auth-page-wrapper pt-5">
     <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
@@ -92,14 +91,27 @@ export default {
       <b-container>
         <b-row>
           <b-col lg="12">
-            <div class="text-center mt-sm-5 mb-4 text-white-50">
+            <div class="text-center mb-4 text-white-50">
               <div>
                 <router-link to="/" class="d-inline-block auth-logo">
-                  <img src="@/assets/images/logo-light.png" alt="" height="20" />
+                  <b-row style="margin: 0 -0.6rem;">
+                    <b-col class="p-2">
+                        <b-img src="https://picsum.photos/250/250/?image=54" alt="" class="rounded avatar-lg"></b-img>
+                    </b-col>
+                    <b-col class="p-2">
+                        <b-img src="https://picsum.photos/250/250/?image=54" alt="" class="rounded avatar-lg"></b-img>
+                    </b-col>
+                    <b-col class="p-2">
+                        <b-img src="https://picsum.photos/250/250/?image=54" alt="" class="rounded avatar-lg"></b-img>
+                    </b-col>
+                    <b-col class="p-2">
+                        <b-img src="https://picsum.photos/250/250/?image=54" alt="" class="rounded avatar-lg"></b-img>
+                    </b-col>
+                </b-row>
                 </router-link>
               </div>
               <p class="mt-3 fs-15 fw-medium">
-                Premium Admin & Dashboard Template
+                Nền tảng báo cáo số liệu quảng cáo thực tế dành cho khách hàng.
               </p>
             </div>
           </b-col>
@@ -110,8 +122,8 @@ export default {
             <b-card no-body class="mt-4">
               <b-card-body class="p-4">
                 <div class="text-center mt-2">
-                  <h5 class="text-primary">Forgot Password?</h5>
-                  <p class="text-muted">Reset password with velzon</p>
+                  <h5 class="text-primary">Quên mật khẩu</h5>
+                  <p class="text-muted">Đặt lại mật khẩu với Adsplus</p>
 
                   <lottie class="avatar-xl" colors="primary:#0ab39c,secondary:#405189" :options="defaultOptions"
                     :height="120" :width="120" />
@@ -124,7 +136,7 @@ export default {
                     <div class="mb-4">
                       <label class="form-label">Email</label>
                       <input type="email" v-model="email" class="form-control" id="email"
-                        :class="{ 'is-invalid': submitted && v$.email.$errors }" placeholder="Enter Email" />
+                        :class="{ 'is-invalid': submitted && v$.email.$errors.length > 0 }" placeholder="Nhập email của bạn" @blur="tryToReset" @keydown="tryToReset"  />
                       <div v-for="(item, index) in v$.email.$errors" :key="index" class="invalid-feedback">
                         <span v-if="item.$message">{{ item.$message }}</span>
                       </div>
@@ -132,7 +144,7 @@ export default {
 
                     <div class="text-center mt-4">
                       <b-button variant="success" class="w-100" type="submit">
-                        Send Reset Link
+                        Gứi
                       </b-button>
                     </div>
                   </form>
@@ -142,9 +154,9 @@ export default {
 
             <div class="mt-4 text-center">
               <p class="mb-0">
-                Wait, I remember my password...
+                Tôi đã nhớ lại mật khẩu của mình...
                 <router-link to="/login" class="fw-semibold text-primary text-decoration-underline">
-                  Click here
+                  Đăng nhập
                 </router-link>
               </p>
             </div>

@@ -74,7 +74,6 @@ export default {
   },
 };
 </script>
-
 <template>
   <div class="auth-page-wrapper pt-5">
     <div class="auth-one-bg-position auth-one-bg" id="auth-particles">

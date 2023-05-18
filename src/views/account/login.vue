@@ -12,7 +12,7 @@ import {
     useVuelidate
 } from '@vuelidate/core'
 import appConfig from "../../../app.config";
-import axios from 'axios';
+// import axios from 'axios';
 
 import {
     authMethods,
@@ -70,7 +70,6 @@ export default {
         ...authMethods,
         ...authFackMethods,
         ...notificationMethods,
-
         async signinapi() {
             this.v$.$validate()
 
@@ -79,80 +78,70 @@ export default {
 
             } else {
               this.state.success = true
-
-                const result = await axios.post('https://api-node.themesbrand.website/auth/signin', {
-                    email: this.state.email,
-                    password: this.state.password
-                });
-                if (result.data.status == 'errors') {
-                    return this.authError = result.data.data;
-                }
-                localStorage.setItem('jwt', result.data.token);
-                this.$router.push({
-                    path: '/'
-                });
-
+              const respone = await this.loginEmailPassword({email: this.state.email,password: this.state.password})
+              respone && this.$router.push('/')
             }
 
         },
 
         // Try to log the user in with the username
         // and password they provided.
-        tryToLogIn() {
-            this.submitted = true;
-            // stop here if form is invalid
-            this.$touch;
+        // tryToLogIn() {
+        //     this.submitted = true;
+        //     // stop here if form is invalid
+        //     this.$touch;
 
-            if (this.$invalid) {
-                return;
-            } else {
-                if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
-                    this.tryingToLogIn = true;
-                    // Reset the authError if it existed.
-                    this.authError = null;
-                    return (
-                        this.logIn({
-                            email: this.email,
-                            password: this.password,
-                        })
-                        // eslint-disable-next-line no-unused-vars
-                        .then((token) => {
-                            this.tryingToLogIn = false;
-                            this.isAuthError = false;
-                            // Redirect to the originally requested page, or to the home page
-                            this.$router.push({
-                                path: '/'
-                            });
-                        })
-                        .catch((error) => {
-                            this.tryingToLogIn = false;
-                            this.authError = error ? error : "";
-                            this.isAuthError = true;
-                        })
-                    );
-                } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
-                    const {
-                        email,
-                        password
-                    } = this;
-                    if (email && password) {
-                        this.login({
-                            email,
-                            password,
-                        });
-                    }
-                } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
-                    axios
-                        .post("http://127.0.0.1:8000/api/login", {
-                            email: this.email,
-                            password: this.password,
-                        })
-                        .then((res) => {
-                            return res;
-                        });
-                }
-            }
-        },
+        //     if (this.$invalid) {
+        //         return;
+        //     } else {
+        //         if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
+        //             this.tryingToLogIn = true;
+        //             // Reset the authError if it existed.
+        //             this.authError = null;
+        //             return (
+        //                 this.logIn({
+        //                     email: this.email,
+        //                     password: this.password,
+        //                 })
+        //                 // eslint-disable-next-line no-unused-vars
+        //                 .then((token) => {
+        //                     this.tryingToLogIn = false;
+        //                     this.isAuthError = false;
+        //                     // Redirect to the originally requested page, or to the home page
+        //                     this.$router.push({
+        //                         path: '/'
+        //                     });
+        //                 })
+        //                 .catch((error) => {
+        //                     this.tryingToLogIn = false;
+        //                     this.authError = error ? error : "";
+        //                     this.isAuthError = true;
+        //                 })
+        //             );
+        //         } else if (process.env.VUE_APP_DEFAULT_AUTH === "fakebackend") {
+        //             const {
+        //                 email,
+        //                 password
+        //             } = this;
+        //             console.log(email)
+        //             if (email && password) {
+        //                 this.login({
+        //                     email,
+        //                     password,
+        //                 });
+        //             }
+        //         } else if (process.env.VUE_APP_DEFAULT_AUTH === "authapi") {
+        //             axios
+        //                 .post("http://127.0.0.1:8000/api/login", {
+        //                     email: this.email,
+        //                     password: this.password,
+        //                 })
+        //                 .then((res) => {
+        //                     return res;
+        //                 });
+        //         }
+        //     }
+        // },
 
     },
 };
@@ -333,7 +322,7 @@ export default {
 
                                 </div>
 
-                                <form @submit.prevent="tryToLogIn">
+                                <form>
                                     <div class="mb-2">
                                         <label for="email" class="form-label">ID Đăng nhập</label>
                                         <input type="email" class="form-control" :class="{ 'is-invalid': v$.email.$error, 'active':v$.email.$error}" @input="v$.email.$touch" @blur="v$.email.$touch" placeholder="Enter email" v-model="state.email" />

@@ -1,13 +1,18 @@
 import { getFirebaseBackend } from '../../authUtils.js'
-
+import AuthenticationService from '../../services/authentication.service.js'
 export const state = {
     currentUser: sessionStorage.getItem('authUser'),
+    jwt: localStorage.getItem("jwt")
 }
 
 export const mutations = {
     SET_CURRENT_USER(state, newValue) {
         state.currentUser = newValue
         saveState('auth.currentUser', newValue)
+    },
+    setJwt(state,value){
+        state.jwt = value
+        localStorage.setItem("jwt",value)
     }
 }
 
@@ -24,6 +29,18 @@ export const actions = {
     // eslint-disable-next-line no-unused-vars
     init({ state, dispatch }) {
         dispatch('validate')
+    },
+
+    async loginEmailPassword({commit},value){
+        const result = await AuthenticationService.login(value.email,value.password)
+        if (result.data.status == 'errors') {
+            return false
+        }
+        if(result){
+            commit('setJwt',result.data.token)
+        }
+        return true
+
     },
 
     // Logs in the current user.

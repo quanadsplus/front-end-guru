@@ -6,6 +6,11 @@ export default{
             icon: 'las la-tachometer-alt'
         },
         {
+            href: '#homeDashborad'
+            ,menuValue: 'homeDashborad',
+            icon: 'las la-tachometer-alt'
+        },
+        {
             href: '#sidebarApps'
             ,menuValue: 'sidebarApps',
             icon: 'lab la-delicious'
@@ -117,5 +122,35 @@ export default{
                 }
             ]
         },
+        {
+            id: 'homeDashborad',
+            list: [
+                {
+                    link: '/dashboard/dashboard-overview',
+                    id: '',
+                    value: '',
+                    datakey: 't-dashboard-overview',
+                    t:'t-dashboard-overview',
+                    list: [],
+                },
+                {
+                    link: '/dashboard/dashboard-by-service',
+                    id: '',
+                    value: '',
+                    datakey: 't-dashboard-by-service',
+                    t:'t-dashboard-by-service',
+                    list: [],
+                },
+                {
+                    link: '/dashboard/dashboard-by-contract',
+                    id: '',
+                    value: '',
+                    datakey: 't-dashboard-by-contract',
+                    t:'t-dashboard-by-contract',
+                    list: [],
+                },
+              
+            ]
+        }
     ]
 }

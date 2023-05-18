@@ -3,7 +3,7 @@ import axios from 'axios';
 import routes from './routes';
 import appConfig from "../../app.config";
 import store from '@/state/store';
-
+import _ from "lodash";
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -42,6 +42,23 @@ router.beforeEach(async (routeTo, routeFrom, next) => {
   });
 });
 
+router.beforeEach((routerTo, routeFrom, next)=>{
+  const token = localStorage.getItem('jwt')
+  const authRequired = routerTo.matched.some((route) => route.meta.authRequired);
+    if(routerTo.name === 'login' && token){
+      next({name: 'loading'})
+    }
+  if (!authRequired) return next();
+  if(_.isEmpty(token) && authRequired){
+    return next({ name: "loading" });
+  }
+  
+  next()
+})
+// router.beforeEach((routerTo, routeFrom, next)=>{
+//   const token = localStorage.getItem('jwt')
+//   routerTo.name !== 'loading' && token
+// })
 router.beforeEach((routeTo, routeFrom, next) => {
   if (process.env.VUE_APP_DEFAULT_AUTH === "firebase") {
 
@@ -85,7 +102,13 @@ router.beforeEach((routeTo, routeFrom, next) => {
   }
 });
 
-
+// router.beforeEach((routerTo,routerFrom,next)=>{
+//   const token = localStorage.getItem('jwt')
+//   if(!token){
+//     next({name: 'login'})
+//   }
+//   next({name: 'loading'})
+// })
 
 router.beforeResolve(async (routeTo, routeFrom, next) => {
   // Create a `beforeResolve` hook, which fires whenever

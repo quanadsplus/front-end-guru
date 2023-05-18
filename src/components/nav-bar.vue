@@ -51,6 +51,11 @@ export default {
         language: "ar",
         title: "Arabic",
       },
+      {
+        flag: require("@/assets/images/flags/vn.svg"),
+        language: "vi",
+        title: "Việt Nam",
+      },
       ],
       lan: i18n.locale,
       text: null,

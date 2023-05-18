@@ -107,7 +107,7 @@ export default {
         setTimeout(function () {
           setpreloader.style.opacity = "0";
           setpreloader.style.visibility = "hidden";
-        }, 1000);
+        }, 300);
       }
     } else {
       document.documentElement.setAttribute("data-preloader", "disable");

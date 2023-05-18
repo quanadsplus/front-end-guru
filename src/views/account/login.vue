@@ -323,6 +323,7 @@ export default {
                                 </div>
 
                                 <form>
+                                    admin@themesbrand.com
                                     <div class="mb-2">
                                         <label for="email" class="form-label">ID Đăng nhập</label>
                                         <input type="email" class="form-control" :class="{ 'is-invalid': v$.email.$error, 'active':v$.email.$error}" @input="v$.email.$touch" @blur="v$.email.$touch" placeholder="Enter email" v-model="state.email" />

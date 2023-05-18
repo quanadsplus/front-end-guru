@@ -2,6 +2,15 @@ import store from "@/state/store";
 
 export default [
   {
+    path: "/",
+    name: "loading",
+    meta: {
+      title: "Loading",
+      authRequired: true,
+    },
+    component: () => import("../views/loading/index.vue"),
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("../views/account/login.vue"),
@@ -38,7 +47,7 @@ export default [
     },
   },
   {
-    path: "/",
+    path: "/home-page",
     name: "default",
     meta: {
       title: "Dashboard",
@@ -52,6 +61,7 @@ export default [
     meta: {
       title: "Crypto",
       authRequired: true,
+    
     },
     component: () => import("../views/dashboard/crypto/index"),
   },
@@ -71,6 +81,7 @@ export default [
     },
     component: () => import("../views/dashboard/crm/index"),
   },
+  
   {
     path: "/dashboard/analytics",
     name: "dashboard-analytics",
@@ -94,6 +105,14 @@ export default [
       title: "Job Dashboard", authRequired: true,
     },
     component: () => import("../views/dashboard/job/index"),
+    
+  },
+  
+  {
+    path: "/dashboard/dashboard-overview",
+    name: "dashboard-overview",
+    meta: { title: "Dashboard Overview", authRequired: true },
+    component: () => import("../views/dashboard/overview/index"),
   },
   {
     path: "/logout",
@@ -1183,4 +1202,5 @@ export default [
     meta: { title: "Leaflet Maps", authRequired: true },
     component: () => import("../views/maps/leaflet/index"),
   },
+  
 ];

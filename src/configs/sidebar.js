@@ -1,74 +1,95 @@
 export default{
     sideBarIcon: [
         {
+            link: '',
             href: '#sidebarDashboards'
             ,menuValue: 'sidebarDashboards',
             icon: 'las la-tachometer-alt'
         },
         {
+            link: '',
             href: '#homeDashborad'
             ,menuValue: 'homeDashborad',
             icon: 'las la-tachometer-alt'
         },
         {
+            link: '',
             href: '#sidebarApps'
             ,menuValue: 'sidebarApps',
             icon: 'lab la-delicious'
         },
         {
+            link: '',
             href: '#sidebarAuth'
             ,menuValue: 'sidebarAuth',
             icon: 'lar la-user-circle'
         },
         {
+            link: '',
             href: '#sidebarPages'
             ,menuValue: 'sidebarPages',
             icon: 'las la-pager'
         },
         {
+            link: '',
             href: '#sidebarlanding'
             ,menuValue: 'sidebarlanding',
             icon: 'ri-rocket-line'
         },
         {
+            link: '',
             href: '#sidebarUI'
             ,menuValue: 'sidebarUI',
             icon: 'las la-pencil-ruler'
         },
         {
+            link: '',
             href: '#sidebarAdvanceUI'
             ,menuValue: 'sidebarAdvanceUI',
             icon: 'las la-briefcase'
         },
         {
+            link: '',
             href: '#sidebarForms'
             ,menuValue: 'sidebarForms',
             icon: 'lar la-newspaper'
         },
         {
+            link: '',
             href: '#sidebarTables'
             ,menuValue: 'sidebarTables',
             icon: 'las la-table'
         },
         {
+            link: '',
             href: '#sidebarCharts'
             ,menuValue: 'sidebarCharts',
             icon: 'las la-chart-pie'
         },
         {
+            link: '',
             href: '#sidebarIcons'
             ,menuValue: 'sidebarIcons',
             icon: 'lab la-fonticons'
         },
         {
+            link: '',
             href: '#sidebarMaps'
             ,menuValue: 'sidebarMaps',
             icon: '"las la-map'
         },
         {
+            link: '',
             href: '#sidebarMultilevel'
             ,menuValue: 'sidebarMultilevel',
             icon: 'las la-folder-plus'
+        },
+        {
+
+            link: '/widgets',
+            href: ''
+            ,menuValue: '',
+            icon: 'las la-flask'
         },
     ]
     ,

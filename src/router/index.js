@@ -67,13 +67,7 @@ router.beforeEach((routeTo, routeFrom, next) => {
     next()
 });
 
-// router.beforeEach((routerTo,routerFrom,next)=>{
-//   const token = localStorage.getItem('jwt')
-//   if(!token){
-//     next({name: 'login'})
-//   }
-//   next({name: 'loading'})
-// })
+
 
 router.beforeResolve(async (routeTo, routeFrom, next) => {
   // Create a `beforeResolve` hook, which fires whenever

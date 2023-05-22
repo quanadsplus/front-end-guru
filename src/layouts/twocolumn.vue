@@ -168,6 +168,10 @@ export default {
 		hideRightSidebar() {
 			document.body.classList.remove("right-bar-enabled");
 		},
+		getConfigLayout(){
+			// if(layout === 'manager') return sidebar.manager
+			// if(layour === 'user') return sidebar.user
+		}
 	},
 
 	mounted() {
@@ -240,10 +244,13 @@ export default {
 							<SimpleBar class="twocolumn-iconview list-unstyled">
 								<b-link href="#" class="logo"><img src="@/assets/images/logo-sm.png" alt="Logo" height="22" /></b-link>
 								<li v-for="(item,index) in sidebar.sideBarIcon" :key="index">
-									<b-link class="nav-icon" :href="item.href" role="button"
+									<b-link v-if="item.href !== ''" class="nav-icon" :href="item.href" role="button"
 										@click.prevent="updateMenu(item.menuValue)">
 										<i :class="item.icon"></i>
 									</b-link>
+									<router-link v-if="item.link !== ''" class="nav-icon" :to="item.link">
+										<i :class="item.icon"></i>
+									</router-link>
 								</li>
 								<li>
 									<b-link class="nav-icon" href="#sidebarDashboards" role="button"

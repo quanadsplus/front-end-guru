@@ -1,9 +1,9 @@
-// import Fetch from "../helpers/fetch";
+
+import axios from "axios";
 import {
   // AUTHENTICATION_LOGIN, LOGIN_URL,
 } from "../configs/api";
-import axios from "axios";
-
+// import Fetch from '../helpers/fetch'
 class AuthenticationService {
   /**
    * Login with phone and password
@@ -16,7 +16,7 @@ class AuthenticationService {
     });
       return result;
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error)
     }
   }
 
